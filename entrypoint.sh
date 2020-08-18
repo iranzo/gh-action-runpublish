@@ -18,7 +18,7 @@ if [ -f build.sh ]; then
 fi
 
 echo '=================== Publish to GitHub Pages ==================='
-cd output
+cd ${SOURCE_FOLDER:=content}
 remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 remote_branch=${GH_PAGES_BRANCH:=gh-pages}
 git init
