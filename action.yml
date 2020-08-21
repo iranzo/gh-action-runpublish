@@ -19,3 +19,8 @@ inputs:
     description: 'override the default `content` folder for sources for website'
     required: false
     default: 'content'
+
+  DONOTPUBLISH:
+    description: 'Set to any value to stop job before pushing to GH-Pages'
+    required: false
+    default: ''

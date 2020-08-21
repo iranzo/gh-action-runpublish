@@ -6,6 +6,7 @@ This action runs `build.sh` and pushes the generated content to Git Hub Pages si
 
 - `GH_PAGES_BRANCH` (optional): override the default `gh-pages` deployment branch
 - `SOURCE_FOLDER` (optional): Set path to use as document root `content` is the default configuration file
+- `DONOTPUBLISH` (optional): Stop after running the command if variable is anything but empty
 
 ## Setup
 
