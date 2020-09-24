@@ -13,28 +13,28 @@ chmod -R u+rwX,go+rwX,go+rwX /github/workspace/ /github/home/.cache/pip
 [ -f requirements.txt ] && pip install -r requirements.txt
 
 if [ -f build.sh ]; then
-	echo '=================== Running extra setup ==================='
-	bash -x build.sh
+    echo '=================== Running extra setup ==================='
+    bash -x build.sh
 fi
 
 if [ "${DONOTPUBLISH:=''}" == "" ]; then
-	echo '=================== Publish to GitHub Pages ==================='
-	cd ${SOURCE_FOLDER:=content}
-	remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-	remote_branch=${GH_PAGES_BRANCH:=gh-pages}
-	git init
-	git remote add deploy "$remote_repo"
-	git checkout $remote_branch || git checkout --orphan $remote_branch
-	git config user.name "${GITHUB_ACTOR}"
-	git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-	git add .
-	echo -n 'Files to Commit:' && ls -l | wc -l
-	timestamp=$(date +%s%3N)
-	git commit -m "[ci skip] Automated deployment to GitHub Pages on $timestamp"
-	git push deploy $remote_branch --force
-	rm -fr .git
-	cd ../
+    echo '=================== Publish to GitHub Pages ==================='
+    cd ${SOURCE_FOLDER:=content}
+    remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+    remote_branch=${GH_PAGES_BRANCH:=gh-pages}
+    git init
+    git remote add deploy "$remote_repo"
+    git checkout $remote_branch || git checkout --orphan $remote_branch
+    git config user.name "${GITHUB_ACTOR}"
+    git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+    git add .
+    echo -n 'Files to Commit:' && ls -l | wc -l
+    timestamp=$(date +%s%3N)
+    git commit -m "[ci skip] Automated deployment to GitHub Pages on $timestamp"
+    git push deploy $remote_branch --force
+    rm -fr .git
+    cd ../
 else
-	echo "PUBLISH SKIPPED!!!!!!!"
+    echo "PUBLISH SKIPPED!!!!!!!"
 fi
 echo '=================== Done  ==================='
