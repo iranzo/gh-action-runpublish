@@ -24,7 +24,7 @@ on:
 
 jobs:
   runpublish:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
